@@ -15,13 +15,14 @@
   -->
 
 <android.support.v4.widget.DrawerLayout
-    android:id="@+id/drawer_layout"
+
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".NotesActivity"
+    tools:context=".notes.NotesActivity"
     tools:openDrawer="start">
 
     <LinearLayout
@@ -33,11 +34,10 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="?attr/colorPrimary"
-            android:minHeight="?attr/actionBarSize"
-            app:theme="@style/Toolbar"
+            android:background="@color/colorPrimary"
+            android:minHeight="?android:attr/actionBarSize"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-            />
+            app:theme="@style/Toolbar" />
 
         <android.support.design.widget.CoordinatorLayout
             android:id="@+id/coordinatorLayout"
@@ -47,7 +47,7 @@
             <FrameLayout
                 android:id="@+id/contentFrame"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
+                android:layout_height="match_parent" />
 
             <android.support.design.widget.FloatingActionButton
                 android:id="@+id/fab_add_notes"
@@ -57,7 +57,7 @@
                 android:src="@drawable/ic_add"
                 app:fabSize="normal"
                 app:layout_anchor="@id/contentFrame"
-                app:layout_anchorGravity="bottom|right|end"/>
+                app:layout_anchorGravity="bottom|right|end" />
         </android.support.design.widget.CoordinatorLayout>
 
     </LinearLayout>
@@ -70,7 +70,7 @@
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/nav_header"
-        app:menu="@menu/drawer_actions"/>
+        app:menu="@menu/drawer_actions" />
 
 
 </android.support.v4.widget.DrawerLayout>
