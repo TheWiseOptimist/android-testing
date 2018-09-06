@@ -20,6 +20,8 @@ import android.app.Activity;
 import android.app.Instrumentation.ActivityResult;
 import android.provider.MediaStore;
 import android.support.test.espresso.Espresso;
+import android.support.test.espresso.IdlingRegistry;
+import android.support.test.espresso.IdlingResource;
 import android.support.test.espresso.intent.rule.IntentsTestRule;
 import android.support.test.filters.LargeTest;
 import android.support.test.rule.ActivityTestRule;
@@ -61,7 +63,7 @@ public class AddNoteScreenTest {
     /**
      * {@link IntentsTestRule} is an {@link ActivityTestRule} which inits and releases Espresso
      * Intents before and after each test run.
-     *
+     * <p>
      * <p>
      * Rules are interceptors which are executed for each test method and are important building
      * blocks of Junit tests.
@@ -78,30 +80,35 @@ public class AddNoteScreenTest {
      */
     @Before
     public void registerIdlingResource() {
-        Espresso.registerIdlingResources(
+        // Deprecated
+        //        Espresso.registerIdlingResources(
+        //        mAddNoteIntentsTestRule.getActivity().getCountingIdlingResource());
+        //    }
+
+        IdlingRegistry.getInstance().register(
                 mAddNoteIntentsTestRule.getActivity().getCountingIdlingResource());
     }
 
     @Test
     public void addImageToNote_ShowsThumbnailInUi() {
-        fail("Implement in step 8");
-//        // Create an Activity Result which can be used to stub the camera Intent
-//        ActivityResult result = createImageCaptureActivityResultStub();
-//        // If there is an Intent with ACTION_IMAGE_CAPTURE, intercept the Intent and respond with
-//        // a stubbed result.
-//        intending(hasAction(MediaStore.ACTION_IMAGE_CAPTURE)).respondWith(result);
-//
-//        // Check thumbnail view is not displayed
-//        onView(withId(R.id.add_note_image_thumbnail)).check(matches(not(isDisplayed())));
-//
-//        selectTakeImageFromMenu();
-//
-//        // Check that the stubbed thumbnail is displayed in the UI
-//        onView(withId(R.id.add_note_image_thumbnail))
-//                .perform(scrollTo()) // Scroll to thumbnail
-//                .check(matches(allOf(
-//                        hasDrawable(), // Check ImageView has a drawable set with a custom matcher
-//                        isDisplayed())));
+//        fail("Implement in step 8");
+        // Create an Activity Result which can be used to stub the camera Intent
+        ActivityResult result = createImageCaptureActivityResultStub();
+        // If there is an Intent with ACTION_IMAGE_CAPTURE, intercept the Intent and respond with
+        // a stubbed result.
+        intending(hasAction(MediaStore.ACTION_IMAGE_CAPTURE)).respondWith(result);
+
+        // Check thumbnail view is not displayed already
+        onView(withId(R.id.add_note_image_thumbnail)).check(matches(not(isDisplayed())));
+
+        selectTakeImageFromMenu();
+
+        // Check that the stubbed thumbnail is displayed in the UI
+        onView(withId(R.id.add_note_image_thumbnail))
+                .perform(scrollTo()) // Scroll to thumbnail
+                .check(matches(allOf(
+                        hasDrawable(), // Check ImageView has a drawable set with a custom matcher
+                        isDisplayed())));
     }
 
     @Test
