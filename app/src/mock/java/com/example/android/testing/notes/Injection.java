@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.example.android.testing.notes;
+package com.example.android.testing.notes; // in src/mock/java/... subdirectory
 
 import com.example.android.testing.notes.data.FakeNotesServiceApiImpl;
 import com.example.android.testing.notes.data.NoteRepositories;

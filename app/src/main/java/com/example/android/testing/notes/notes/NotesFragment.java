@@ -97,7 +97,7 @@ public class NotesFragment extends Fragment implements NotesContract.View {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_notes, container, false);
-        RecyclerView recyclerView = (RecyclerView) root.findViewById(R.id.notes_list);
+        RecyclerView recyclerView =  root.findViewById(R.id.notes_list);
         recyclerView.setAdapter(mListAdapter);
 
         int numColumns = getContext().getResources().getInteger(R.integer.num_notes_columns);
@@ -107,7 +107,7 @@ public class NotesFragment extends Fragment implements NotesContract.View {
 
         // Set up floating action button
         FloatingActionButton fab =
-                (FloatingActionButton) getActivity().findViewById(R.id.fab_add_notes);
+                getActivity().findViewById(R.id.fab_add_notes);
 
         fab.setImageResource(R.drawable.ic_add);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -118,8 +118,7 @@ public class NotesFragment extends Fragment implements NotesContract.View {
         });
 
         // Pull-to-refresh
-        SwipeRefreshLayout swipeRefreshLayout =
-                (SwipeRefreshLayout) root.findViewById(R.id.refresh_layout);
+        SwipeRefreshLayout swipeRefreshLayout = root.findViewById(R.id.refresh_layout);
         swipeRefreshLayout.setColorSchemeColors(
                 ContextCompat.getColor(getActivity(), R.color.colorPrimary),
                 ContextCompat.getColor(getActivity(), R.color.colorAccent),
@@ -149,8 +148,7 @@ public class NotesFragment extends Fragment implements NotesContract.View {
         if (getView() == null) {
             return;
         }
-        final SwipeRefreshLayout srl =
-                (SwipeRefreshLayout) getView().findViewById(R.id.refresh_layout);
+        final SwipeRefreshLayout srl = getView().findViewById(R.id.refresh_layout);
 
         // Make sure setRefreshing() is called after the layout is done with everything else.
         srl.post(new Runnable() {
